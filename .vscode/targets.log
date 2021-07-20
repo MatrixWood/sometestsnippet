@@ -1,0 +1,226 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+ 
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Fri Jul 16 18:28:08 2021
+
+# Variables
+
+# environment
+LC_ALL = C
+# environment
+VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /root/.vscode-server/bin/2d23c42a936db1c7b3b06f918cde29561cc47cd6/remote/node_modules
+# environment
+VSCODE_CWD = /root
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /root/workspace/sometestsnippet
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+OLDPWD = /root
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+LANG = C
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /root/workspace/sometestsnippet
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile
+MAKEFILE_LIST := 
+# automatic
+@F = $(notdir $@)
+# environment
+ZSH = /root/.oh-my-zsh
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+XDG_SESSION_TYPE = tty
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"fa871dcc52f689d5c3b8a42d026c7d06.zh-cn","_translationsConfigFile":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/tcf.json","_cacheRoot":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn","_resolvedLanguagePackCoreLocation":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/2d23c42a936db1c7b3b06f918cde29561cc47cd6","_corruptedFile":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/corrupted.info","_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /root/.vscode-server/bin/2d23c42a936db1c7b3b06f918cde29561cc47cd6/bin:/root/.vscode-server/bin/2d23c42a936db1c7b3b06f918cde29561cc47cd6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# default
+MAKEFILES := 
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# environment
+SSH_CLIENT = 103.7.29.31 1806 22
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?F = $(notdir $?)
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+LESS = -R
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = /root/.vscode-server/bin/2d23c42a936db1c7b3b06f918cde29561cc47cd6/bin/helpers/browser.sh
+# environment
+LOGNAME = root
+# makefile
+.DEFAULT_GOAL := 
+# environment
+USER = root
+# default
+MAKE_VERSION := 4.3
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+PAGER = less
+# environment
+VSCODE_AGENT_FOLDER = /root/.vscode-server
+# environment
+_ = /root/.vscode-server/bin/2d23c42a936db1c7b3b06f918cde29561cc47cd6/node
+# environment
+XDG_RUNTIME_DIR = /run/user/0
+# environment
+VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-1bd3433f-7fc4-4cd5-8775-73bdb49aede0.sock
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
+# environment
+HOME = /root
+# environment
+XDG_SESSION_ID = 413
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+SSH_CONNECTION = 103.7.29.31 1806 45.76.212.98 22
+# variable set hash-table stats:
+# Load=71/1024=7%, Rehash=0, Collisions=3/98=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 64513, inode 3643551): 37 files, no impossibilities.
+
+# 37 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 45 / storage = 537 B / avg = 11 B
+# current buf: size = 8162 B / used = 537 B / count = 45 / avg = 11 B
+
+# strcache performance: lookups = 48 / hit rate = 6%
+# hash-table stats:
+# Load=45/8192=1%, Rehash=0, Collisions=1/48=2%
+# Finished Make data base on Fri Jul 16 18:28:08 2021
+
+ 

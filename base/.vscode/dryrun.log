@@ -1,0 +1,6 @@
+make all --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/root/workspace/sometestsnippet/base'
+g++ -g -Wall -I /usr/local/include -O2 -o atomic_unittest test/Atomic_unittest.cpp  -lpthread
+g++ -g -Wall -I /usr/local/include -O2 -o thread_test test/Thread_test.cpp Thread.cpp  -lpthread
+make: Leaving directory '/root/workspace/sometestsnippet/base'
+ 
