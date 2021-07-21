@@ -1,0 +1,244 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jul 21 14:12:26 2021
+
+# Variables
+
+# environment
+LC_ALL = C
+# environment
+VSCODE_INJECT_NODE_MODULE_LOOKUP_PATH = /root/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/remote/node_modules
+# environment
+VSCODE_CWD = /root
+# default
+MAKE_COMMAND := make
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /root/workspace/reactor1
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+OLDPWD = /root
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+LANG = C
+# makefile (from 'Makefile', line 4)
+BASE_SRC = 
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /root/workspace/reactor1
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+ZSH = /root/.oh-my-zsh
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+XDG_SESSION_TYPE = tty
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+*F = $(notdir $*)
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/0/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"fa871dcc52f689d5c3b8a42d026c7d06.zh-cn","_translationsConfigFile":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/tcf.json","_cacheRoot":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn","_resolvedLanguagePackCoreLocation":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/c3f126316369cd610563c75b1b1725e0679adfb3","_corruptedFile":"/root/.vscode-server/data/clp/fa871dcc52f689d5c3b8a42d026c7d06.zh-cn/corrupted.info","_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /root/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/bin:/root/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# default
+MAKEFILES := 
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 5)
+BINARIES = main
+# makefile (from 'Makefile', line 3)
+LIB_SRC = Channel.cpp EventLoop.cpp Poller.cpp Thread.cpp TimerQueue.cpp Timestamp.cpp 
+# environment
+SSH_CLIENT = 103.7.29.31 18927 22
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?F = $(notdir $?)
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+LESS = -R
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = /root/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/bin/helpers/browser.sh
+# environment
+LOGNAME = root
+# makefile
+.DEFAULT_GOAL := all
+# environment
+USER = root
+# default
+MAKE_VERSION := 4.3
+# makefile (from 'Makefile', line 2)
+LDFLAGS = -lpthread
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+PAGER = less
+# environment
+VSCODE_AGENT_FOLDER = /root/.vscode-server
+# environment
+_ = /root/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/node
+# environment
+XDG_RUNTIME_DIR = /run/user/0
+# environment
+VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-686b7c59-0fe6-4b31-b7d9-1b34071bd16c.sock
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/server/remoteExtensionHostProcess
+# environment
+HOME = /root
+# environment
+XDG_SESSION_ID = 562
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# makefile (from 'Makefile', line 1)
+CXXFLAGS = -O0 -g -Wall -I . -pthread
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+SSH_CONNECTION = 103.7.29.31 18927 45.76.212.98 22
+# variable set hash-table stats:
+# Load=77/1024=8%, Rehash=0, Collisions=3/109=3%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 64513, inode 7283508): 25 files, no impossibilities.
+
+# 25 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-21 10:22:33.889277823
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 13):
+	rm -f $(BINARIES) core
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: main
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2021-07-21 10:36:46.85148027
+#  File has been updated.
+#  Successfully updated.
+
+main: main.cpp
+#  Implicit rule search has not been done.
+#  Last modified 2021-07-21 10:39:40.90416345
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 10):
+	g++ $(CXXFLAGS) -o $@ $(LIB_SRC) $(BASE_SRC) $(filter %.cpp,$^) $(LDFLAGS)
+
+# files hash-table stats:
+# Load=7/1024=1%, Rehash=0, Collisions=0/22=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 31 / storage = 302 B / avg = 9 B
+# current buf: size = 8162 B / used = 302 B / count = 31 / avg = 9 B
+
+# strcache performance: lookups = 44 / hit rate = 29%
+# hash-table stats:
+# Load=31/8192=0%, Rehash=0, Collisions=0/44=0%
+# Finished Make data base on Wed Jul 21 14:12:26 2021
+
+ 

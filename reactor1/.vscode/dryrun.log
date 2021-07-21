@@ -1,0 +1,5 @@
+make main --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/root/workspace/reactor1'
+g++ -O0 -g -Wall -I . -pthread -o main Channel.cpp EventLoop.cpp Poller.cpp Thread.cpp TimerQueue.cpp Timestamp.cpp   main.cpp -lpthread
+make: Leaving directory '/root/workspace/reactor1'
+ 
