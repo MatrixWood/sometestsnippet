@@ -4,7 +4,6 @@
 #include <list>
 #include <semaphore.h>
 #include <iostream>
-#include <memory>
 
 class Task {
 public:
@@ -21,17 +20,18 @@ private:
 };
 
 pthread_mutex_t mymutex;
-std::list<std::unique_ptr<Task>> tasks;
+std::list<Task*> tasks;
 pthread_cond_t mycv;
 
 void* consumer_thread(void* param) {
-    std::unique_ptr<Task> pTask = nullptr;
+    Task* pTask = nullptr;
     while (true) {
         pthread_mutex_lock(&mymutex);
         while (tasks.empty()) {
             pthread_cond_wait(&mycv, &mymutex);
         }
         pTask = std::move(tasks.front());
+        std::cout << "fuck " << std::endl;
         tasks.pop_front();
         pthread_mutex_unlock(&mymutex);
         if (pTask == nullptr)
@@ -44,9 +44,9 @@ void* consumer_thread(void* param) {
 
 void* producer_thread(void* param) {
     int taskID = 0;
-    std::unique_ptr<Task> pTask;
+    Task* pTask;
     while (true) {
-        std::unique_ptr<Task> p_tmp(new Task(taskID));
+        Task* p_tmp(new Task(taskID));
         pTask = std::move(p_tmp);
         pthread_mutex_lock(&mymutex);
         tasks.push_back(pTask);
@@ -63,8 +63,8 @@ int main() {
     pthread_mutex_init(&mymutex, nullptr);
     pthread_cond_init(&mycv, nullptr);
 
-    pthread_t consumerThreadID[5];
-    for (int i = 0; i < 5; ++i) {
+    pthread_t consumerThreadID[1];
+    for (int i = 0; i < 1; ++i) {
         pthread_create(&consumerThreadID[i], nullptr, consumer_thread, nullptr);
     }
     pthread_t producerThreadID;
@@ -72,7 +72,7 @@ int main() {
 
     pthread_join(producerThreadID, nullptr);
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 1; ++i) {
         pthread_join(consumerThreadID[i], nullptr);
     }
 

@@ -15,7 +15,6 @@ class IMysqlTask {
   IMysqlTask() {}
   virtual ~IMysqlTask() {}
 
- private:
   virtual void execute(CDatabaseMysql* conn) = 0;
   virtual void reply() = 0;
   virtual void release() { delete this; }
