@@ -69,6 +69,63 @@ bool CMysqlManager::isDBExist()
 
   Field* row = result->fetch();
   while (row != nullptr) {
-    
+    std::string name = row[0].getString();
+    if (str_dbname_ == name) {
+      result->endQuery();
+      return true;
+    }
+
+    if (result->nextRow() == false) {
+      break;
+    }
+
+    row = result->fetch();
+  }
+
+  result->endQuery();
+
+  delete result;
+  return false;
+}
+
+bool CMysqlManager::createDB()
+{
+  if (conn_ == nullptr) return false;
+
+  uint32_t affected_count = 0;
+  int errno_ = 0;
+
+  std::stringstream ss;
+  ss << "create database " << str_dbname_;
+
+  if (conn_->execute(ss.str().c_str(), affected_count, errno_)) {
+    if (affected_count == 1)
+      return true;
+  } else {
+    return false;
+  }
+  return false;
+}
+
+bool CMysqlManager::checkTable(const STableInfo& table)
+{
+  if (conn_ == nullptr) return false;
+
+  if (table.str_name_.find_first_not_of("\t\r\n") == std::string::npos) return true;
+
+  std::stringstream ss;
+  ss << "desc " << table.str_name_;
+  QueryResult* result = conn_->query(ss.str());
+  if (result == nullptr) {
+    if (createTable(table))
+      return true;
+    return false;
+  } else { // check field match
+    std::map<std::string, std::string> map_oldtable;
+    Field* row = result->fetch();
+    while (row != nullptr) {
+      std::string name = row[0].getString();
+      std::string type = row[1].getString();
+    }
   }
 }
