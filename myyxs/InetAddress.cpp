@@ -3,6 +3,8 @@
 
 #include <strings.h>
 
+namespace yxs {
+
 static const in_addr_t kInAddrAny = INADDR_ANY;
 
 static_assert(sizeof(InetAddress) == sizeof(struct sockaddr_in));
@@ -23,4 +25,6 @@ std::string InetAddress::toHostPort() const {
   char buf[32];
   sockets::toHostPort(buf, sizeof(buf), addr_);
   return buf;
+}
+
 }

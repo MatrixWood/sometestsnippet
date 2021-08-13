@@ -4,6 +4,8 @@
 #include "InetAddress.h"
 #include "SocketsOps.h"
 
+namespace yxs {
+
 class InetAddress;
 
 class Socket {
@@ -35,5 +37,7 @@ class Socket {
  private:
   const int sockfd_;
 };
+
+} // namespace yxs
 
 #endif

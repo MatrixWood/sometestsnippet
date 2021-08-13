@@ -3,9 +3,17 @@
 #include "SocketsOps.h"
 #include "Socket.h"
 #include "TcpConnection.h"
+#include "ConfigReader.h"
+
+using namespace yxs;
 
 int main() {
-  InetAddress addr(SERVER_ADDR, SERVER_PORT);
+
+  ConfigReader::setPath("conf.ini");
+  std::string ip = ConfigReader::instance()->getString("client", "server_addr", "47.97.181.98");
+  uint16_t port = ConfigReader::instance()->getNumber("client", "server_port", 20000);
+
+  InetAddress addr(ip, port);
 
   TcpConnection conn(addr);
 

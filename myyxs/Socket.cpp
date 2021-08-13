@@ -4,6 +4,8 @@
 #include <netinet/tcp.h>
 #include <strings.h>
 
+namespace yxs {
+
 Socket::~Socket() {
   closeFd();
 }
@@ -57,4 +59,6 @@ int Socket::checkSocket() {
   }
 
   return err == 0 ? 0 : -1;
+}
+
 }

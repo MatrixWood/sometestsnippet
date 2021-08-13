@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <netinet/in.h>
 
+namespace yxs {
+
 int TcpConnection::connect() {
   int ret = sock_.connect(addr_);
   return ret;
@@ -15,22 +17,19 @@ int TcpConnection::connect() {
 int TcpConnection::recvData(std::string& data) {
   std::vector<char> buffer(MAX_BUF_LENGTH);
   int received = 0;
-  //do {
-    received = ::recv(sock_.fd(), &buffer[0], buffer.size(), 0);
-    if (received == -1) { 
-      if (!(errno == EINTR || errno == EWOULDBLOCK || errno == EAGAIN)) {
-        perror("recv error.");
-        return -1;
-      }
-    } else if (received == 0) {
-      perror("peer shutdown.");
-      return 0;
-    } else {
-      buf_.append(buffer.cbegin(), buffer.cend());
-      data = buf_;
-      return received;
+  received = ::recv(sock_.fd(), &buffer[0], buffer.size(), 0);
+  if (received == -1) { 
+    if (!(errno == EINTR || errno == EWOULDBLOCK || errno == EAGAIN)) {
+      perror("recv error.");
+      return -1;
     }
-  //} while (received == MAX_BUF_LENGTH);
+  } else if (received == 0) {
+    perror("peer shutdown.");
+    return 0;
+  } else {
+    buf_.append(buffer.cbegin(), buffer.cend());
+    data = buf_;
+  }
 
   return received;
 }
@@ -65,4 +64,6 @@ int TcpConnection::getMsg(std::string& msg) {
   }
 
   return 0;
+}
+
 }

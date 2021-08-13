@@ -1,4 +1,5 @@
 #include "SocketsOps.h"
+#include "utils/Log.h"
 
 #include <sstream>
 #include <errno.h>
@@ -8,6 +9,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <stdlib.h>
+
+namespace yxs {
 
 namespace socket_details {
 
@@ -26,17 +29,17 @@ SA* sockaddr_cast(struct sockaddr_in* addr) {
   return static_cast<SA*>(implicit_cast<void*>(addr));
 }
 
-}
+} // namespace socket_details
 
 void sockets::setNonBlockAndCloseOnExec(int sockfd) {
   int flags = ::fcntl(sockfd, F_GETFL, 0);
   flags |= O_NONBLOCK;
-  int ret = ::fcntl(sockfd, F_SETFL, flags);
+  ::fcntl(sockfd, F_SETFL, flags);
 
   // close-on-exec
   flags = ::fcntl(sockfd, F_GETFD, 0);
   flags |= FD_CLOEXEC;
-  ret = ::fcntl(sockfd, F_SETFD, flags);
+  ::fcntl(sockfd, F_SETFD, flags);
 }
 
 int sockets::createNonblockingOrDie() {
@@ -46,8 +49,7 @@ int sockets::createNonblockingOrDie() {
   
   if (sockfd < 0) {
     close(sockfd);
-    perror("sockets::createNonblockingOrDie");
-    exit(-1);
+    Log::Fatal("sockets::createNonblockingOrDie");
   }
 
   return sockfd;
@@ -56,16 +58,14 @@ int sockets::createNonblockingOrDie() {
 void sockets::bindOrDie(int sockfd, const struct sockaddr_in& addr) {
   int ret = ::bind(sockfd, socket_details::sockaddr_cast(&addr), sizeof(addr));
   if (ret < 0) {
-    perror("sockets::bindOrDie");
-    exit(-1);
+    Log::Fatal("sockets::bindOrDie");
   }
 }
 
 void sockets::listenOrDie(int sockfd) {
   int ret = ::listen(sockfd, SOMAXCONN);
   if (ret < 0) {
-    perror("sockets::listenOrDie");
-    exit(-1);
+    Log::Fatal("ockets::listenOrDie");
   }
 }
 
@@ -74,12 +74,12 @@ int sockets::connect(int sockfd, struct sockaddr_in addr) {
   while (true) {
     int ret = ::connect(sockfd, (struct sockaddr*)&addr, addrlen);
     if (ret == 0) {
-      perror("sockets::connect: connect to server success.");
+      Log::Error("sockets::connect: connect to server success.");
       break;
     }
     if (ret == -1) {
       if (errno == EINTR) {
-        perror("sockets::connect: connect interruptted.");
+        Log::Error("sockets::connect: connect interruptted.");
         continue;
       } else if (errno == EINPROGRESS) {
         break;
@@ -99,7 +99,7 @@ int sockets::accept(int sockfd, struct sockaddr_in* addr) {
 
   if (connfd < 0) {
     int savedErrno = errno;
-    perror("sockets::accept");
+    Log::Error("sockets::accept");
     switch (savedErrno) {
       case EAGAIN:
       case ECONNABORTED:
@@ -120,13 +120,13 @@ int sockets::accept(int sockfd, struct sockaddr_in* addr) {
       case EOPNOTSUPP: {
         std::stringstream ss;
         ss << "unexpected error of ::accept " << savedErrno;
-        perror(ss.str().c_str());
+        Log::Error(ss.str().c_str());
         break;
       }
       default: {
         std::stringstream ss;
         ss << "unknown error of ::accept " << savedErrno;
-        perror(ss.str().c_str());
+        Log::Error(ss.str().c_str());
         break;
       }
     }
@@ -136,8 +136,7 @@ int sockets::accept(int sockfd, struct sockaddr_in* addr) {
 
 void sockets::close(int sockfd) {
   if (::close(sockfd) < 0) {
-    perror("sockets::close");
-    exit(-1);
+    Log::Fatal("sockets::close");
   }
 }
 
@@ -153,9 +152,9 @@ void sockets::fromHostPort(const char* ip, uint16_t port,
                            struct sockaddr_in* addr) {
   addr->sin_family = AF_INET;
   addr->sin_port = hostToNetwork16(port);
-  if (::inet_pton(AF_INET, ip, &addr->sin_addr) <= 0) {
-    perror("sockets::fromHostPort");
-    exit(-1);
+  int ret = ::inet_pton(AF_INET, ip, &addr->sin_addr);
+  if (ret <= 0) {
+    Log::Fatal("sockets::fromHostPort");
   }
 }
 
@@ -164,8 +163,7 @@ struct sockaddr_in sockets::getLocalAddr(int sockfd) {
   bzero(&localaddr, sizeof localaddr);
   socklen_t addrlen = sizeof(localaddr);
   if (::getsockname(sockfd, socket_details::sockaddr_cast(&localaddr), &addrlen) < 0) {
-    perror("sockets::getLocalAddr");
-    exit(-1);
+    Log::Fatal("sockets::getLocalAddr");
   }
   return localaddr;
 }
@@ -180,3 +178,5 @@ int sockets::getSocketError(int sockfd) {
     return optval;
   }
 }
+
+} // namespace yxs

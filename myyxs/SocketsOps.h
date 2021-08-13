@@ -4,6 +4,8 @@
 #include <arpa/inet.h>
 #include <endian.h>
 
+namespace yxs {
+
 namespace sockets {
 
 // network byte order: bid endian
@@ -50,6 +52,8 @@ struct sockaddr_in getLocalAddr(int sockfd);
 
 int getSocketError(int sockfd);
 
-}
+} // namespace sockets
+
+} // namespace yxs
 
 #endif

@@ -5,6 +5,8 @@
 
 #include <netinet/in.h>
 
+namespace yxs {
+
 class InetAddress {
  public:
   explicit InetAddress(uint16_t port);
@@ -26,5 +28,7 @@ class InetAddress {
  private:
   struct sockaddr_in addr_;
 };
+
+} // namespace yxs
 
 #endif
