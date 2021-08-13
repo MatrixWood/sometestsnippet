@@ -26,22 +26,22 @@ SA* sockaddr_cast(struct sockaddr_in* addr) {
   return static_cast<SA*>(implicit_cast<void*>(addr));
 }
 
-void setNonBlockAndCloseOnExec(int sockfd) {
+}
+
+void sockets::setNonBlockAndCloseOnExec(int sockfd) {
   int flags = ::fcntl(sockfd, F_GETFL, 0);
   flags |= O_NONBLOCK;
   int ret = ::fcntl(sockfd, F_SETFL, flags);
 
   // close-on-exec
-  flags = ::fcntl(sockfd, F_GETFD, 0);
-  flags |= FD_CLOEXEC;
-  ret = ::fcntl(sockfd, F_SETFD, flags);
-}
-
+  //flags = ::fcntl(sockfd, F_GETFD, 0);
+  //flags |= FD_CLOEXEC;
+  //ret = ::fcntl(sockfd, F_SETFD, flags);
 }
 
 int sockets::createNonblockingOrDie() {
   int sockfd = ::socket(AF_INET,
-                        SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC,
+                        SOCK_STREAM, // | SOCK_NONBLOCK | SOCK_CLOEXEC,
                         IPPROTO_TCP);
   
   if (sockfd < 0) {
@@ -69,25 +69,25 @@ void sockets::listenOrDie(int sockfd) {
   }
 }
 
-int sockets::connect(int sockfd, struct sockaddr_in* addr) {
-  socklen_t addrlen = sizeof(*addr);
-  while (true) {
-    int ret = ::connect(sockfd, socket_details::sockaddr_cast(addr), addrlen);
-    if (ret == 0) {
-      perror("sockets::connect: connect to server success.");
-      break;
-    }
-    if (ret == -1) {
-      if (errno == EINTR) {
-        perror("sockets::connect: connect interruptted.");
-        continue;
-      } else if (errno == EINPROGRESS) {
-        break;
-      } else {
-        return -1;
-      }
-    }
-  }
+int sockets::connect(int sockfd, struct sockaddr_in addr) {
+  socklen_t addrlen = sizeof(addr);
+  // while (true) {
+    int ret = ::connect(sockfd, (struct sockaddr*)&addr, addrlen);
+    //if (ret == 0) {
+    //  perror("sockets::connect: connect to server success.");
+    //  break;
+    //}
+    //if (ret == -1) {
+    //  if (errno == EINTR) {
+    //    perror("sockets::connect: connect interruptted.");
+    //    continue;
+    //  } else if (errno == EINPROGRESS) {
+    //    break;
+    //  } else {
+    //    return -1;
+    //  }
+    //}
+  // }
   return 0;
 }
 
@@ -95,7 +95,7 @@ int sockets::accept(int sockfd, struct sockaddr_in* addr) {
   socklen_t addrlen = sizeof(*addr);
 
   int connfd = ::accept(sockfd, socket_details::sockaddr_cast(addr), &addrlen);
-  socket_details::setNonBlockAndCloseOnExec(connfd);
+  setNonBlockAndCloseOnExec(connfd);
 
   if (connfd < 0) {
     int savedErrno = errno;

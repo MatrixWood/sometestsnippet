@@ -1,12 +1,16 @@
 #pragma once
 
+#include "SocketsOps.h"
+
 class InetAddress;
 
 class Socket {
  public:
   explicit Socket(int sockfd)
     : sockfd_(sockfd)
-  {}
+  {
+    //sockets::setNonBlockAndCloseOnExec(sockfd_);
+  }
 
   ~Socket();
 
@@ -24,7 +28,7 @@ class Socket {
 
   int checkSocket();
 
-  void close();
+  void closeFd();
 
  private:
   const int sockfd_;

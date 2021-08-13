@@ -22,7 +22,7 @@ class TcpConnection {
 
   int recvData();
 
-  struct timeval& setTimer() {
+  struct timeval setTimer() {
     struct timeval tv;
     tv.tv_sec = 1;
     tv.tv_usec = 0;

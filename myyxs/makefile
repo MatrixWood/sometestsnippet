@@ -1,8 +1,8 @@
 CXXFLAGS = -O0 -g -Wall -I . -pthread
 LDFLAGS = -lpthread
 LIB_SRC = 
-BASE_SRC = 
-BINARIES = yxsclient
+BASE_SRC = InetAddress.cpp Socket.cpp SocketsOps.cpp TcpConnection.cpp
+BINARIES = YxsGame
 
 all: $(BINARIES)
 
@@ -12,4 +12,4 @@ $(BINARIES):
 clean:
 	rm -f $(BINARIES) core
 
-yxsclient: yxsclient.cpp
+YxsGame: YxsGame.cpp

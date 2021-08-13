@@ -31,11 +31,12 @@ inline uint16_t networkToHost16(uint16_t net16) {
   return ntohs(net16);
 }
 
+void setNonBlockAndCloseOnExec(int sockfd);
 int createNonblockingOrDie();
 
 void bindOrDie(int sockfd, const struct sockaddr_in& addr);
 void listenOrDie(int sockfd);
-int connect(int sockfd, struct sockaddr_in* addr);
+int connect(int sockfd, struct sockaddr_in addr);
 int accept(int sockfd, struct sockaddr_in* addr);
 void close(int sockfd);
 
