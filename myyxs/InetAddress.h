@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _YXS_INETADDRESS_H_
+#define _YXS_INETADDRESS_H_
 
 #include <string>
 
@@ -25,3 +26,5 @@ class InetAddress {
  private:
   struct sockaddr_in addr_;
 };
+
+#endif

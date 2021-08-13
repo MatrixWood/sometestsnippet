@@ -1,7 +1,7 @@
-#include "DefineType.h"
+#include "../DefineType.h"
 
 SOCKET initSocket() {
-    int clientfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
+    int clientfd = socket(AF_INET, SOCK_STREAM, 0);
     if (clientfd == -1) {
         close(clientfd);
         perror("create client socket error.");
@@ -126,7 +126,7 @@ int main()
     
     clientfd = initSocket();
 
-    //setNonblock(clientfd);
+    setNonblock(clientfd);
 
     if (connectServer(clientfd) != 0) {
         perror("connect to server failed.");

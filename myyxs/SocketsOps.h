@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _YXS_SOCKETSOPS_H_
+#define _YXS_SOCKETSOPS_H_
 
 #include <arpa/inet.h>
 #include <endian.h>
@@ -50,3 +51,5 @@ struct sockaddr_in getLocalAddr(int sockfd);
 int getSocketError(int sockfd);
 
 }
+
+#endif

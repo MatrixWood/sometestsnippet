@@ -12,7 +12,7 @@ int TcpConnection::connect() {
   return ret;
 }
 
-int TcpConnection::recvData() {
+int TcpConnection::recvData(std::string& data) {
   std::vector<char> buffer(MAX_BUF_LENGTH);
   int received = 0;
   //do {
@@ -27,6 +27,7 @@ int TcpConnection::recvData() {
       return 0;
     } else {
       buf_.append(buffer.cbegin(), buffer.cend());
+      data = buf_;
       return received;
     }
   //} while (received == MAX_BUF_LENGTH);
@@ -34,7 +35,7 @@ int TcpConnection::recvData() {
   return received;
 }
 
-int TcpConnection::getMsg() {
+int TcpConnection::getMsg(std::string& msg) {
   struct timeval tv = setTimer();
 
   while (!is_recv_) {
@@ -54,7 +55,7 @@ int TcpConnection::getMsg() {
       int is_set = FD_ISSET(sock_.fd(), &readset);
 
       if (is_set) {
-        int ret = recvData();
+        int ret = recvData(msg);
         if (ret > 0)
           is_recv_ = true;
       }

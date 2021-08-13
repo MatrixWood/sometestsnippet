@@ -2,7 +2,6 @@
 #include "SocketsOps.h"
 
 #include <strings.h>
-#include <netinet/in.h>
 
 static const in_addr_t kInAddrAny = INADDR_ANY;
 

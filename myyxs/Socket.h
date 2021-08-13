@@ -1,5 +1,7 @@
-#pragma once
+#ifndef _YXS_SOCKET_H_
+#define _YXS_SOCKET_H_
 
+#include "InetAddress.h"
 #include "SocketsOps.h"
 
 class InetAddress;
@@ -33,3 +35,5 @@ class Socket {
  private:
   const int sockfd_;
 };
+
+#endif

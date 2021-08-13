@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _YXS_TCPCONNECTION_H_
+#define _YXS_TCPCONNECTION_H_
 
 #include "Socket.h"
 #include "DefineType.h"
@@ -7,20 +8,21 @@
 
 class TcpConnection {
  public:
-  TcpConnection(Socket sock, const InetAddress& peeraddr)
-    : sock_(sock),
+  TcpConnection(const InetAddress& peeraddr)
+    : sock_(sockets::createNonblockingOrDie()),
       addr_(peeraddr),
       is_recv_(false)
-  {}
+  {
+  }
 
   ~TcpConnection()
   {}
 
   int connect();
 
-  int getMsg();
+  int getMsg(std::string& msg);
 
-  int recvData();
+  int recvData(std::string& data);
 
   struct timeval setTimer() {
     struct timeval tv;
@@ -35,3 +37,5 @@ class TcpConnection {
   std::string buf_;
   Socket sock_;
 };
+
+#endif

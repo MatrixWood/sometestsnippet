@@ -1,3 +1,7 @@
+#ifndef _YXS_DEFINE_TYPE_H_
+#define _YXS_DEFINE_TYPE_H_
+
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -26,3 +30,6 @@
 #define SERVER_PORT 20000
 
 typedef int SOCKET;
+
+
+#endif
