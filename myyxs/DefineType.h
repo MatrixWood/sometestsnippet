@@ -20,6 +20,7 @@
 #include <fstream>
 
 #define BUF_SIZE 200
+#define MAX_BUF_LENGTH 4096
 
 #define SERVER_ADDR "47.97.181.98"
 #define SERVER_PORT 20000

@@ -12,4 +12,15 @@ int main() {
     std::cout << "before vec_ptr size: " << vec_ptr.size() << std::endl;
     std::unique_ptr<int> one_ptr = std::move(vec_ptr.back());
     std::cout << "after vec_ptr size: " << vec_ptr.size() << std::endl;
+
+
+    int* i = new int(22);
+    std::unique_ptr<int> uptr(i);
+
+    int* j = uptr.get();
+
+    int ii = 33;
+    j = &ii;
+
+    return 0;
 }

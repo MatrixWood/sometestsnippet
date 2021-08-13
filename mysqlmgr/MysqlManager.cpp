@@ -126,6 +126,62 @@ bool CMysqlManager::checkTable(const STableInfo& table)
     while (row != nullptr) {
       std::string name = row[0].getString();
       std::string type = row[1].getString();
+      map_oldtable[name] = type;
+
+      if (result->nextRow() == false) {
+        break;
+      }
+      row = result->fetch();
+    }
+
+    result->endQuery();
+    delete result;
+
+    for (auto it = table.map_field_.begin(); it != table.map_field_.end(); ++it) {
+      STableField field = it->second;
+      if (map_oldtable.find(field.str_name_) == map_oldtable.end()) {
+        std::stringstream ss;
+        ss << "alter table " << table.str_name_ << " add column "
+           << field.str_name_ << " " << field.str_type_;
+        
+        std::string sql = ss.str();
+        if (conn_->execute(sql.c_str())) {
+          continue;
+        } else {
+          return false;
+        }
+      }
     }
   }
+
+  return true;
+}
+
+bool createTable(const STableInfo& table) {
+  if (table.map_field_.size() == 0) {
+    return false;
+  }
+
+  std::stringstream ss;
+  ss << "CREATE TABLE IF NOT EXISTS " << table.str_name_ << "(";
+
+  for (auto it = table.map_field_.begin(); it != table.map_field_.end(); ++it) {
+    if (it != table.map_field_.begin()) {
+      ss << ", ";
+    }
+
+    STableField field = it->second;
+    ss << field.str_name_ << " " << field.str_type_;
+  }
+
+  if (table.str_keystring_ != "") {
+    ss << ", " << table.str_keystring_;
+  }
+
+  ss << ") default charset = utf8, Engine = InnoDB;";
+  if (conn_->execute(ss.str().c_str())) {
+    return true;
+  }
+
+  return false;
 }
