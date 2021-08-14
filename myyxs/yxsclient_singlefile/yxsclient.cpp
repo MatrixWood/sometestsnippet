@@ -1,4 +1,30 @@
-#include "../DefineType.h"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+#include <string>
+#include <string.h> 
+#include <map>
+#include <vector>
+#include <stdlib.h>
+#include <errno.h>
+#include <list>
+#include <fstream>
+
+#define BUF_SIZE 200
+#define MAX_BUF_LENGTH 4096
+
+#define SERVER_ADDR "47.97.181.98"
+#define SERVER_PORT 20000
+
+typedef int SOCKET;
 
 SOCKET initSocket() {
     int clientfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -58,10 +84,12 @@ int recvData(int fd) {
     if (ret > 0) {
         std::cout << "recv data: " << buf << std::endl;
         return ret;
-    } else if (ret == 0) {
+    }
+    if (ret == 0) {
         std::cout << "peer shutdown." << std::endl;
         return 0;
-    } else if (ret == -1) {
+    }
+    if (ret == -1) {
         if (!(errno == EINTR || errno == EWOULDBLOCK || errno == EAGAIN)) {
             perror("recv error.");
             return -1;
@@ -74,6 +102,38 @@ int recvData(int fd) {
 int sendData(int fd) {
     // TODO
     return 0;
+}
+
+int isConnectSucc(int clientfd) {
+    fd_set writeset;
+    FD_ZERO(&writeset);
+    FD_SET(clientfd, &writeset);
+    struct timeval tv;
+    tv.tv_sec = 3;
+    tv.tv_usec = 0;
+
+    if (select(clientfd + 1, NULL, &writeset, NULL, &tv) != 1) {
+        std::cout << "[select] connect to server error." << std::endl;
+        close(clientfd);
+
+        return -1;
+    }
+
+    int err;
+    socklen_t len = static_cast<socklen_t>(sizeof(err));
+    if (::getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &err, &len) < 0) {
+        close(clientfd);
+        return -1;
+    }
+
+    if (err == 0) {
+        std::cout << "After check, connect to server successfully." << std::endl;
+        return 0;
+    } else {
+        std::cout << "After check, connect to server error." << std::endl;
+        close(clientfd);
+        return -1;
+    }
 }
 
 int getMsg(int clientfd) {
@@ -95,16 +155,7 @@ int getMsg(int clientfd) {
             std::cout << "[select] connect to server error." << std::endl;
             close(clientfd);
             return -1;
-        }
-
-        int err;
-        socklen_t len = static_cast<socklen_t>(sizeof(err));
-        if (::getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &err, &len) < 0) {
-            close(clientfd);
-            return -1;
-        }
-
-        if (err == 0) {
+        } else {
             int is_set = FD_ISSET(clientfd, &readset);
 
             if (is_set) {
@@ -112,8 +163,6 @@ int getMsg(int clientfd) {
                 if (ret > 0)
                     is_recv = true;
             }
-        } else {
-            std::cout << "connect to server error." << std::endl;
         }
     }
 
@@ -130,6 +179,11 @@ int main()
 
     if (connectServer(clientfd) != 0) {
         perror("connect to server failed.");
+        return -1;
+    }
+
+    if (isConnectSucc(clientfd) < 0) {
+        perror("check connection: connect failed.");
         return -1;
     }
 
