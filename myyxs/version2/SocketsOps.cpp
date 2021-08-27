@@ -79,15 +79,12 @@ int sockets::isConnectSucc(int clientfd) {
 
   if (select(clientfd + 1, NULL, &writeset, NULL, &tv) != 1) {
     Log::Error("sockets::isConnectSucc: [select] connect to server error.");
-    close(clientfd);
-
     return -1;
   }
 
   int err;
   socklen_t len = static_cast<socklen_t>(sizeof(err));
   if (::getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &err, &len) < 0) {
-    close(clientfd);
     return -1;
   }
 
@@ -96,7 +93,6 @@ int sockets::isConnectSucc(int clientfd) {
     return 0;
   } else {
     Log::Error("sockets::isConnectSucc: after check, connect to server error.");
-    close(clientfd);
     return -1;
   }
 }

@@ -72,7 +72,9 @@ int TcpClient::DecodePackage() {
 }
 
 void TcpClient::ShowData() {
-  
+  for (auto& it : m_recvData) {
+    std::cout << it << std::endl;
+  }
 }
 
 }

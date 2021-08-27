@@ -1,7 +1,7 @@
 CXXFLAGS = -O0 -g -Wall -I . -pthread
 LDFLAGS = -lpthread
 LIB_SRC = 
-BASE_SRC = InetAddress.cpp Socket.cpp SocketsOps.cpp TcpConnection.cpp ConfigReader.cpp utils/Log.cpp
+BASE_SRC = InetAddress.cpp Socket.cpp SocketsOps.cpp TcpClient.cpp ConfigReader.cpp utils/Log.cpp
 BINARIES = YxsGame
 
 all: $(BINARIES)

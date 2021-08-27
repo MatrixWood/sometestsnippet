@@ -29,16 +29,16 @@ void Log::Error(const char* msg) {
   perror(ss.str().c_str());
 }
 
+void Crash() {
+  char* p = nullptr;
+  *p = 0;
+}
+
 void Log::Fatal(const char* msg) {
   std::stringstream ss;
   ss << "[FATAL]" << msg;
   perror(ss.str().c_str());
   Crash();
-}
-
-void Log::Crash() {
-  char* p = nullptr;
-  *p = 0;
 }
 
 }
