@@ -48,6 +48,11 @@ int Socket::connect(const InetAddress& peeraddr) {
   if (ret != 0) {
     return -1;
   }
+
+  ret = sockets::isConnectSucc(sockfd_);
+  if (ret != 0) {
+    return -1;
+  }
   return 0;
 }
 

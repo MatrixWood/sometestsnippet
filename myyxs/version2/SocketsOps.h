@@ -40,6 +40,7 @@ int createNonblockingOrDie();
 void bindOrDie(int sockfd, const struct sockaddr_in& addr);
 void listenOrDie(int sockfd);
 int connect(int sockfd, struct sockaddr_in addr);
+int isConnectSucc(int clientfd);
 int accept(int sockfd, struct sockaddr_in* addr);
 void close(int sockfd);
 

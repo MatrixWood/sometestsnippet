@@ -155,8 +155,7 @@ int getMsg(int clientfd) {
             std::cout << "[select] connect to server error." << std::endl;
             close(clientfd);
             return -1;
-        }
-        if (err == 0) {
+        } else {
             int is_set = FD_ISSET(clientfd, &readset);
 
             if (is_set) {

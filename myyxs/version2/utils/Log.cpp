@@ -33,7 +33,12 @@ void Log::Fatal(const char* msg) {
   std::stringstream ss;
   ss << "[FATAL]" << msg;
   perror(ss.str().c_str());
-  exit(-1);
+  Crash();
+}
+
+void Log::Crash() {
+  char* p = nullptr;
+  *p = 0;
 }
 
 }

@@ -69,6 +69,38 @@ void sockets::listenOrDie(int sockfd) {
   }
 }
 
+int sockets::isConnectSucc(int clientfd) {
+  fd_set writeset;
+  FD_ZERO(&writeset);
+  FD_SET(clientfd, &writeset);
+  struct timeval tv;
+  tv.tv_sec = 3;
+  tv.tv_usec = 0;
+
+  if (select(clientfd + 1, NULL, &writeset, NULL, &tv) != 1) {
+    Log::Error("sockets::isConnectSucc: [select] connect to server error.");
+    close(clientfd);
+
+    return -1;
+  }
+
+  int err;
+  socklen_t len = static_cast<socklen_t>(sizeof(err));
+  if (::getsockopt(clientfd, SOL_SOCKET, SO_ERROR, &err, &len) < 0) {
+    close(clientfd);
+    return -1;
+  }
+
+  if (err == 0) {
+    Log::Info("sockets::isConnectSucc: after check, connect to server successfully.");
+    return 0;
+  } else {
+    Log::Error("sockets::isConnectSucc: after check, connect to server error.");
+    close(clientfd);
+    return -1;
+  }
+}
+
 int sockets::connect(int sockfd, struct sockaddr_in addr) {
   socklen_t addrlen = sizeof(addr);
   while (true) {
