@@ -48,9 +48,7 @@ int TcpConnection::getMsg(std::string& msg) {
     } else if (select_ret < 0) {
       perror("[select] connect to server error.");
       return -1;
-    }
-
-    if (sock_.checkSocket() == 0) {
+    } else {
       int is_set = FD_ISSET(sock_.fd(), &readset);
 
       if (is_set) {
@@ -58,8 +56,6 @@ int TcpConnection::getMsg(std::string& msg) {
         if (ret > 0)
           is_recv_ = true;
       }
-    } else {
-      perror("connect to server error.");
     }
   }
 

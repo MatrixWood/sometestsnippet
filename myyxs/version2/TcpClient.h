@@ -27,9 +27,11 @@ class TcpClient {
 
   int GetMsg(std::string& msg);
 
-  int RecvData(std::string& data);
+  int RecvData();
 
-  int DecodePackages();
+  int DecodePackage();
+
+  void ShowData();
 
  private:
   struct timeval SetTimer(int sec, int usec) {

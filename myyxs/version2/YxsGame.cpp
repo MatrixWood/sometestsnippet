@@ -2,7 +2,7 @@
 #include "InetAddress.h"
 #include "SocketsOps.h"
 #include "Socket.h"
-#include "TcpConnection.h"
+#include "TcpClient.h"
 #include "ConfigReader.h"
 
 using namespace yxs;
@@ -15,14 +15,15 @@ int main() {
 
   InetAddress addr(ip, port);
 
-  TcpConnection conn(addr);
+  TcpClient conn(addr);
 
-  conn.connect();
+  conn.AsyncConnect();
 
-  std::string msg;
-  conn.getMsg(msg);
+  conn.RecvData();
 
-  std::cout << msg << std::endl;
+  conn.DecodePackage();
+
+  conn.ShowData();
   
   return 0;
 }
